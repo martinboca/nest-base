@@ -1,4 +1,4 @@
-import { Entity, OptionalProps, PrimaryKey } from '@mikro-orm/core';
+import { Entity, OptionalProps, PrimaryKey, Property } from '@mikro-orm/core';
 import { randomUUID } from 'crypto';
 import { ClassCtor, toDTO } from 'src/utils/dto.utils';
 import { BaseEntity as BE } from '@mikro-orm/core';
@@ -12,6 +12,12 @@ export abstract class BaseEntity<
 
   @PrimaryKey({ type: 'uuid' })
   id = randomUUID();
+
+  @Property({ type: 'date' })
+  createdAt = new Date();
+
+  @Property({ type: 'date', onUpdate: () => new Date() })
+  updatedAt = new Date();
 
   toDTO<Dto extends object>(dtoClass: ClassCtor<Dto>): Dto {
     return toDTO(this, dtoClass);
