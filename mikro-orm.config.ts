@@ -20,7 +20,7 @@ export default defineConfig({
   migrations: {
     tableName: '_migrations',
     allOrNothing: true,
-    disableForeignKeys: true,
+    disableForeignKeys: false,
     path: Utils.detectTsNode()
       ? 'src/database/migrations'
       : 'dist/src/database/migrations',
@@ -32,4 +32,7 @@ export default defineConfig({
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   dbName: process.env.DATABASE_NAME,
+  // driverOptions: {
+  //   connection: { ssl: true },
+  // },
 });
