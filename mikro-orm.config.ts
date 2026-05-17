@@ -13,7 +13,7 @@ export default defineConfig({
   entitiesTs: ['src/**/*.entity.ts'],
   extensions: [Migrator, SeedManager],
   seeder: {
-    path: Utils.detectTsNode()
+    path: Utils.detectTypeScriptSupport()
       ? 'src/database/seeders'
       : 'dist/src/database/seeders',
   },
@@ -21,7 +21,7 @@ export default defineConfig({
     tableName: '_migrations',
     allOrNothing: true,
     disableForeignKeys: false,
-    path: Utils.detectTsNode()
+    path: Utils.detectTypeScriptSupport()
       ? 'src/database/migrations'
       : 'dist/src/database/migrations',
     transactional: true,
