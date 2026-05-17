@@ -11,6 +11,7 @@ export default defineConfig({
   highlighter: new SqlHighlighter(),
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
+  discovery: { warnWhenNoEntities: false },
   extensions: [Migrator, SeedManager],
   seeder: {
     path: Utils.detectTypeScriptSupport()
