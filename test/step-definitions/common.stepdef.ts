@@ -6,7 +6,7 @@ import 'tsconfig-paths/register';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { MIKRO_ORM_MODULE_OPTIONS } from '@mikro-orm/nestjs';
 import { AppModule } from 'src/app.module';
-import { MikroORM } from '@mikro-orm/core';
+import { MikroORM } from '@mikro-orm/postgresql';
 import assert from 'assert';
 import supertest from 'supertest';
 import { App } from 'supertest/types';
@@ -40,15 +40,13 @@ Before(async function (this: TestWorld) {
 
   await this.app.init();
   const orm = this.app.get(MikroORM);
-  const generator = orm.getSchemaGenerator();
-  await generator.dropSchema();
-  await generator.createSchema();
+  await orm.schema.drop();
+  await orm.schema.create();
 });
 
 After(async function (this: TestWorld) {
   const orm = this.app.get(MikroORM);
-  const generator = orm.getSchemaGenerator();
-  await generator.dropSchema();
+  await orm.schema.drop();
   await this.app.close();
 });
 

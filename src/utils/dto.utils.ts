@@ -8,7 +8,7 @@ import {
 import { BaseEntity } from '@mikro-orm/core';
 import { BadRequestException } from '@nestjs/common';
 
-export type ClassCtor<T extends object> = new (...args: never[]) => T;
+export type ClassCtor<T extends object> = new (...args: any[]) => T;
 
 // Make an instance of the DTO with data from the entity
 // stripping fields not declared in the DTO

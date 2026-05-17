@@ -9,7 +9,7 @@ export class BaseEntityDTO {
     description: 'Unique identifier of the entity',
   })
   @IsString()
-  id: UUID;
+  id!: UUID;
 
   @ApiProperty({
     type: String,
@@ -17,7 +17,7 @@ export class BaseEntityDTO {
     description: 'Date when the entity was created',
   })
   @IsDate()
-  createdAt: Date;
+  createdAt!: Date;
 
   @ApiProperty({
     type: String,
@@ -25,5 +25,5 @@ export class BaseEntityDTO {
     description: 'Date when the entity was last updated',
   })
   @IsDate()
-  updatedAt: Date;
+  updatedAt!: Date;
 }
